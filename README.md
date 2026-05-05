@@ -36,19 +36,21 @@ BlueFox-Nexus is designed with a modular architecture:
 
 The first version of BlueFox-Nexus focuses on simplicity:
 
-- Basic log ingestion system
+- Basic agent
+- Log ingestion system
 - Centralized storage
-- Simple rule-based alerting
-- Minimal API layer for data access
+- Basic supervision (Monitoring)
+- Basic rules engine
+- Alerting system
 
 ---
 
 ## 🦀 Tech Stack
 
 - **Rust** (core system, performance & security)
-- API framework (TBD: Axum or Actix-web)
-- Database (TBD: PostgreSQL / Elasticsearch / ClickHouse)
-- Frontend (TBD: Web dashboard)
+- API framework (TBD)
+- Database (TBD)
+- Frontend (Web dashboard)
 
 ---
 
