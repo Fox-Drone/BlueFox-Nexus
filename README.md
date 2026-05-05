@@ -65,6 +65,14 @@ BlueFox-Nexus is designed with security-first principles:
 
 ---
 
+## 📚 Inspiration
+
+BlueFox-Nexus is inspired by established open-source observability and security platforms.
+
+The goal is not to replicate them, but to provide a modern, modular and Rust-based approach focused on Blue Team operations.
+
+---
+
 ## 📜 License
 
 This project is licensed under the Apache License 2.0.
