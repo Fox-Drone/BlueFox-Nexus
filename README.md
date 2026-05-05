@@ -23,10 +23,10 @@ The main objective of BlueFox-Nexus is to simplify Blue Team operations by provi
 BlueFox-Nexus is designed with a modular architecture:
 
 
-/agents → Data collectors (Linux, Windows, network)
-/core → Detection engine + correlation logic
-/api → Backend API (communication layer)
-/ui → Dashboard interface
+/agents → Data collectors (Linux, Windows, network)  
+/core → Detection engine + correlation logic  
+/api → Backend API (communication layer)  
+/ui → Dashboard interface  
 /plugins → Extendable modules (parsers, rules, integrations)
 
 
