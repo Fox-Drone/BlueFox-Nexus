@@ -98,15 +98,6 @@ The platform is designed to support future expansion:
 
 ---
 
-## 📊 Data Model
-
-- **Event** → normalized system/security activity
-- **Metric** → numeric telemetry (CPU, network, SNMP data)
-- **Alert** → detection output from rule engine
-- **Device** → discovered network asset
-
----
-
 ## 📚 Inspiration
 
 BlueFox-Nexus is inspired by modern SIEM and observability platforms such as Kibana, Splunk, and Grafana.
