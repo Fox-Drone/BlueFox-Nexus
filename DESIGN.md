@@ -56,7 +56,18 @@ It is not designed as a SaaS platform or external hosted service.
 
 ---
 
-## 4. System Architecture
+## 4. Core Components
+
+- `/ingestion` → Data collection (syslog, SNMP, traps)
+- `/core/pipeline` → Event normalization and processing
+- `/core/dispatcher` → Persistence layer (PostgreSQL)
+- `/rules` → Detection and correlation engine (future)
+- `/api` → REST API (Axum)
+- `/frontend` → React + TypeScript dashboard
+
+---
+
+## 5. System Architecture
 
 The system is built around a **pipeline-based event processing architecture**.
 
@@ -175,7 +186,7 @@ It provides a centralized interface for security and observability workflows.
 
 ---
 
-## 5. Data Model
+## 6. Data Model
 
 ### Event
 Normalized representation of system or network activity (syslog, SNMP, agents).
@@ -191,7 +202,7 @@ Discovered network device (based on SNMP and network discovery logic).
 
 ---
 
-## 6. Data Flow
+## 7. Data Flow
 
 Syslog / SNMP / Agents  
 ↓  
@@ -209,7 +220,7 @@ Frontend Dashboard (React + TypeScript)
 
 ---
 
-## 7. Integration in Enterprise Systems
+## 8. Integration in Enterprise Systems
 
 BlueFox-Nexus is designed to be integrated as a **backend observability and security component** inside enterprise SI architectures.
 
@@ -225,7 +236,7 @@ It operates as a **system infrastructure component**, not as an end-user SaaS pr
 
 ---
 
-## 8. MVP Scope (Current Version)
+## 9. MVP Scope (Current Version)
 
 ### Already implemented:
 
@@ -249,7 +260,7 @@ It operates as a **system infrastructure component**, not as an end-user SaaS pr
 
 ---
 
-## 9. Future Improvements
+## 10. Future Improvements
 
 ### Security & Access
 - Authentication (JWT / OAuth2)
@@ -275,7 +286,7 @@ It operates as a **system infrastructure component**, not as an end-user SaaS pr
 
 ---
 
-## 10. Design Principles
+## 11. Design Principles
 
 - High performance (Rust-first design)
 - Low overhead ingestion
@@ -287,7 +298,7 @@ It operates as a **system infrastructure component**, not as an end-user SaaS pr
 
 ---
 
-## 11. Non-Goals
+## 12. Non-Goals
 
 - SaaS hosting platform
 - Public multi-tenant service
@@ -296,11 +307,9 @@ It operates as a **system infrastructure component**, not as an end-user SaaS pr
 
 ---
 
-## 12. Security Model
+## 13. Security Model
 
 - Designed for internal enterprise trust boundaries
 - No external user exposure by default
 - Intended for controlled SI environments
 - Can be deployed in isolated networks
-
----
