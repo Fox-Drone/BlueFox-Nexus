@@ -27,17 +27,6 @@ The full system architecture, components, and data flow are described in detail 
 
 ---
 
-### Core Components
-
-- `/ingestion` → Data collection (syslog, SNMP, traps)
-- `/core/pipeline` → Event normalization and processing
-- `/core/dispatcher` → Persistence layer (PostgreSQL)
-- `/rules` → Detection and correlation engine (future)
-- `/api` → REST API (Axum)
-- `/frontend` → React + TypeScript dashboard
-
----
-
 ## 🚀 MVP (Current Version)
 
 The current version includes:
