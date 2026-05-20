@@ -21,21 +21,9 @@ BlueFox-Nexus aims to simplify enterprise security and observability by providin
 
 ## 🧱 System Architecture
 
-BlueFox-Nexus is built around a **pipeline-based event processing architecture**:
+The full system architecture, components, and data flow are described in detail here:
 
-Syslog / SNMP / Agents
-↓
-Ingestion Layer
-↓
-Core Pipeline
-↓
-Dispatcher + Rule Engine
-↓
-PostgreSQL Storage
-↓
-REST API Layer
-↓
-Frontend Dashboard (React + TypeScript)
+👉 [`design.md`](./design.md)
 
 ---
 
@@ -63,26 +51,6 @@ The current version includes:
 - Basic alerting system
 - REST API with filtering and pagination
 - Structured logging (tracing)
-
----
-
-## 🦀 Tech Stack
-
-### Backend
-
-- **Rust**
-- **Axum** (REST API)
-- **Tokio** (async runtime)
-- **PostgreSQL** (sqlx)
-- **Serde**
-- **Tracing**
-
-### Frontend
-
-- **React**
-- **TypeScript**
-- **Vite (recommended build tool)**
-- Component-based SOC dashboard architecture
 
 ---
 
@@ -167,19 +135,9 @@ It is not a SaaS product, but an **internal security platform component**.
 
 ## 📜 License
 
-This project is licensed under the **Business Source License (BSL 1.1)**.
+This project is licensed under the **Business Source License (BSL 1.1)** with additional commercial use clarification defined in the LICENSE file..
 
-- License Change Date: 2029-01-01  
+- License Change Date: 2030-01-01  
 - Change License: Apache License 2.0
 
-### Summary:
-
-- Internal enterprise use is allowed
-- SaaS / hosted commercial use is restricted
-- The project becomes open source on the Change Date
-
----
-
-## 🦊 Summary
-
-BlueFox-Nexus is a **Rust-based SIEM and observability platform** designed for enterprise internal security environments, combining high-performance backend processing with a modern React + TypeScript SOC dashboard.
+For full details, see the [`LICENSE`](./LICENSE) file.
