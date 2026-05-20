@@ -12,7 +12,7 @@ BlueFox-Nexus is designed as a centralized security and observability platform t
 
 It provides a unified view of infrastructure and security data, combining log management, system monitoring, and security visibility in one place.
 
-The long-term goal is to enable fast and efficient correlation of security events across all collected data, improving detection and response capabilities. Future versions will also explore AI-assisted analysis to enhance correlation and threat detection.
+The long-term goal is to enable fast and efficient correlation of security events across all collected data, improving detection and response capabilities. Future versions will also explore AI-assisted analysis to enhance correlation and threat detection, as well as integration with other tools commonly used in security and observability ecosystems.
 
 BlueFox-Nexus can help replace or reduce the need for multiple existing tools such as:
 
@@ -32,73 +32,22 @@ The full system architecture, components, and data flow are described in detail 
 
 ## 🚀 Current Version
 
-The current version includes:
+The current version is an MVP focused on basic infrastructure monitoring and security event collection.
 
-- Syslog ingestion (UDP)
-- SNMP polling and trap handling
-- Event processing pipeline
-- Metrics generation
-- Basic device discovery
-- PostgreSQL storage layer
-- Basic alerting system
-- REST API with filtering and pagination
-- Structured logging (tracing)
-
----
-
-## 🧠 Design Principles
-
-- High-performance systems programming (Rust-first)
-- Low-latency event ingestion
-- Modular pipeline architecture
-- Backend-first SIEM design
-- Enterprise integration focus (SI / SOC environments)
-- Clear separation between backend engine and frontend dashboard
-- Scalable and extensible design
+It provides a simple supervision and observability foundation based on Syslog and SNMP ingestion, with basic processing, storage, and API access.
 
 ---
 
 ## 🔐 Security Model
 
-BlueFox-Nexus is designed for **internal enterprise environments only**:
+BlueFox-Nexus is designed with the following security and deployment principles in mind:
 
-- No public multi-tenant SaaS model
-- No external exposure by default
-- Designed for controlled SI / SOC infrastructures
-- Minimal attack surface
-- Strong separation between ingestion, processing, storage, and UI layers
-- Audit-friendly architecture
-
----
-
-## 🧩 Extensibility
-
-The platform is designed to support future expansion:
-
-- Advanced detection rule engine
-- Distributed agents (Windows / Linux)
-- Real-time WebSocket streaming
-- SIEM/SOAR integrations
-- Plugin-based architecture (parsers, rules, connectors)
-- Horizontal scaling ingestion nodes
-
----
-
-## 📡 Data Sources
-
-### Currently supported
-
-- Syslog (UDP ingestion)
-- SNMP polling
-- SNMP traps
-
-### Planned
-
-- Windows Event Logs
-- Linux audit logs
-- Cloud telemetry (AWS / Azure / GCP)
-- Network flow data (NetFlow / IPFIX)
-
+- Intended for internal environments (SI / SOC deployments)
+- Minimal external exposure by default
+- Reduced attack surface through backend-first architecture
+- Clear separation between ingestion, processing, storage, and UI layers
+- Designed for controlled and isolated network environments
+- Audit-friendly architecture suitable for enterprise security requirements
 ---
 
 ## 📚 Inspiration
