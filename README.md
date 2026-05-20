@@ -27,7 +27,7 @@ The full system architecture, components, and data flow are described in detail 
 
 ---
 
-## 🚀 MVP (Current Version)
+## 🚀 Current Version
 
 The current version includes:
 
@@ -100,16 +100,11 @@ The platform is designed to support future expansion:
 
 ## 📚 Inspiration
 
-BlueFox-Nexus is inspired by modern SIEM and observability platforms such as Kibana, Splunk, and Grafana.
+BlueFox-Nexus is inspired by several well-known open-source and industry projects in the fields of observability, logging, and security monitoring.
 
-It is designed as:
+The architecture and design decisions were influenced by existing open-source ecosystems and community-driven security tooling, combined with a Rust-first approach to performance and safety.
 
-- a **Rust-native SIEM core engine**
-- a **modular backend processing pipeline**
-- a **frontend React + TypeScript SOC dashboard**
-- a **deployable enterprise security infrastructure component**
-
-It is not a SaaS product, but an **internal security platform component**.
+This project is not a fork of any existing software and has been independently designed and implemented.
 
 ---
 
