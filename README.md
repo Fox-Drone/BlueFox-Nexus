@@ -30,6 +30,18 @@ The full system architecture, components, and data flow are described in detail 
 
 ---
 
+## ⚙️ Installation
+
+This section provides installation guidance depending on the type of deployment chosen.
+
+**This section is currently under development and will be available soon.**
+
+Planned setup support will include:
+- Local deployment
+- Docker-based deployment
+
+---
+
 ## 🚀 Current Version
 
 The current version is an MVP focused on basic infrastructure monitoring and security event collection.
