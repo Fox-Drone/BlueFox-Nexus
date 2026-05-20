@@ -1,6 +1,6 @@
 # 🦊 BlueFox-Nexus
 
-**BlueFox-Nexus** is a high-performance Security Information and Event Management (SIEM) and observability platform written in **Rust**, designed for **enterprise internal security infrastructures (SI / SOC environments)**.
+**BlueFox-Nexus** is a high-performance Security Information and Event Management (SIEM) and observability platform written in **Rust**, designed for **enterprise internal security infrastructures**.
 
 It provides a unified backend pipeline for collecting, processing, and analyzing security events, metrics, and network data.
 
@@ -8,14 +8,17 @@ It provides a unified backend pipeline for collecting, processing, and analyzing
 
 ## 🎯 Goals
 
-BlueFox-Nexus aims to simplify enterprise security and observability by providing a unified platform that can:
+BlueFox-Nexus is designed as a centralized security and observability platform that unifies key monitoring and security functions into a single system.
 
-- Collect and normalize logs from multiple sources (syslog, SNMP, agents)
-- Process real-time security events and telemetry
-- Aggregate system and network metrics
-- Perform basic device discovery
-- Provide a centralized REST API for security data
-- Support rule-based detection and future correlation engine
+It provides a unified view of infrastructure and security data, combining log management, system monitoring, and security visibility in one place.
+
+The long-term goal is to enable fast and efficient correlation of security events across all collected data, improving detection and response capabilities. Future versions will also explore AI-assisted analysis to enhance correlation and threat detection.
+
+BlueFox-Nexus can help replace or reduce the need for multiple existing tools such as:
+
+- SIEM solutions
+- log aggregation / log management platforms
+- EDR solutions
 
 ---
 
