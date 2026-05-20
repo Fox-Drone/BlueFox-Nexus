@@ -1,0 +1,5 @@
+body { font-family: Arial, sans-serif; background: #0b1220; color: #e6eaff; margin: 0; }
+header { padding: 20px; text-align: center; background: #1e1f2a; }
+.panel { padding: 20px; max-width: 900px; margin: 0 auto; }
+section { margin-bottom: 20px; }
+#cpuChart { width: 100%; height: 180px; }

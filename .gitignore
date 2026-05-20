@@ -1,0 +1,10 @@
+# Rust
+backend/target/
+backend/.sqlx/
+
+# env
+backend/.env/
+
+# IDE
+.vscode/
+.idea/

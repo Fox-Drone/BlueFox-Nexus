@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>BlueFox-Nexus Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header><h1>BlueFox-Nexus Dashboard</h1></header>
+  <main class="panel">
+    <section id="status" aria-label="Statuts système">
+      <div>CPU usage: <span id="cpu">-</span>%</div>
+      <div>RAM usage: <span id="ram">-</span>%</div>
+      <div>Disk usage: <span id="disk">-</span>%</div>
+      <div>Network in: <span id="netIn">-</span> B</div>
+      <div>Network out: <span id="netOut">-</span> B</div>
+      <div>Timestamp: <span id="ts">-</span></div>
+    </section>
+    <section id="charts" aria-label="Charts">
+      <h2>CPU usage (moyenne sur 60 échantillons)</h2>
+      <canvas id="cpuChart" width="600" height="180"></canvas>
+    </section>
+    <section id="charts" aria-label="Charts">
+      <h2>RAM usage (moyenne sur 60 échantillons)</h2>
+      <canvas id="ramChart" width="600" height="180"></canvas>
+    </section>
+    <section id="charts" aria-label="Charts">
+      <h2>Disk usage (moyenne sur 60 échantillons)</h2>
+      <canvas id="diskChart" width="600" height="180"></canvas>
+    </section>
+   </main>
+  <script src="script.js"></script>
+</body>
+</html>
