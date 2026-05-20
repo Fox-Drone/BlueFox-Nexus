@@ -23,7 +23,7 @@ BlueFox-Nexus aims to simplify enterprise security and observability by providin
 
 The full system architecture, components, and data flow are described in detail here:
 
-👉 [`design.md`](./design.md)
+👉 [`DESIGN.md`](./DESIGN.md)
 
 ---
 
