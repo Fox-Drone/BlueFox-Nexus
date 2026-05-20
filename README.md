@@ -72,14 +72,6 @@ This project is not a fork of any existing software and has been independently d
 
 ---
 
-## 🤝 Contributing
-
-See how to contribute to this project in the guidelines below:
-
-👉 [`CONTRIBUTING`](./CONTRIBUTING.md)
-
----
-
 ## 📜 License
 
 This project is licensed under the **Business Source License (BSL 1.1)** with additional commercial clarification.
