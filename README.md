@@ -26,7 +26,7 @@ BlueFox-Nexus can help replace or reduce the need for multiple existing tools su
 
 The full system architecture, components, and data flow are described in detail here:
 
-👉 [`DESIGN.md`](./DESIGN.md)
+👉 [`DESIGN`](./DESIGN.md)
 
 ---
 
