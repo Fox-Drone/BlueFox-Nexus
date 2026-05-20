@@ -135,7 +135,7 @@ It is not a SaaS product, but an **internal security platform component**.
 
 ## 📜 License
 
-This project is licensed under the **Business Source License (BSL 1.1)** with additional commercial use clarification defined in the LICENSE file..
+This project is licensed under the **Business Source License (BSL 1.1)** with additional commercial clarification.
 
 - License Change Date: 2030-01-01  
 - Change License: Apache License 2.0
