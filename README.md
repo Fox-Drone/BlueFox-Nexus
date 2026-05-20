@@ -74,7 +74,7 @@ This project is not a fork of any existing software and has been independently d
 
 ## 🤝 Contributing
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md)
+See [CONTRIBUTING](./CONTRIBUTING.md)
 
 ---
 
