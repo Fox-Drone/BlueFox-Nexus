@@ -1,94 +1,57 @@
 # Business Source License 1.1
 
-Copyright (c) 2026 BlueFox-Nexus
+License text copyright (c) 2020 MariaDB Corporation Ab, All Rights Reserved.
+
+“Business Source License” is a trademark of MariaDB Corporation Ab.
 
 ---
 
-## 1. License Change Date
+## Licensor:
+BlueFox-Nexus
 
-License Change Date: 2029-01-01
+## Licensed Work:
+The Licensed Work is (c) 2026 BlueFox-Nexus.
 
 ---
 
-## 2. Change License
+## License Change Date:
+2030-01-01
 
-On the License Change Date, this License will automatically convert to:
-
+## Change License:
 Apache License 2.0
 
 ---
 
-## 3. Terms
+## Commercial Use Clarification
 
-The Licensor hereby grants you the right to use, copy, modify, and distribute the Licensed Work subject to the following conditions:
+This section clarifies the commercial usage restrictions of the Licensed Work under the Business Source License 1.1.
 
----
+The Licensed Work may not be used, in whole or in part, to create, offer, or distribute a commercial product or service where the Licensed Work itself constitutes a core functionality or primary component of the offering.
 
-## 4. Licensor
+This includes, but is not limited to, hosting the Licensed Work as a service, providing it as a managed or SaaS offering, or integrating it into a commercial solution in a way that the resulting product relies on or competes with the Licensed Work.
 
-"Licensor" means BlueFox-Nexus.
+It is permitted to provide paid professional services related to the Licensed Work, including installation, deployment, configuration, integration, maintenance, debugging, support, and consulting, provided that the Licensed Work is used by the client for internal purposes only and is not commercialized as part of a product or service offering.
 
----
+For clarity, this License permits commercial activity around the Licensed Work (services), but not the commercialization of the Licensed Work itself or any derivative product where it becomes the primary value component.
 
-## 5. Licensed Work
-
-"Licensed Work" means the software distributed under this License, including its source code and associated components.
+This section is intended to further clarify the restrictions already defined under the Business Source License 1.1, and does not expand or replace the original license terms.
 
 ---
 
-## 6. Production Use Limitation
+## Terms
 
-The Licensed Work may be used for internal production purposes.
+The Licensor hereby grants you the right to copy, modify, create derivative works, redistribute, and make non-production use of the Licensed Work.
 
-However, you may not use the Licensed Work to provide a competing hosted or managed service.
+The Licensor may make additional permitted production use grants as defined in this License.
 
----
+On the License Change Date, or four years after the first public release of a version of the Licensed Work (whichever comes first), this License will automatically convert to the Change License.
 
-## 7. Competing Use Definition
+All copies of the Licensed Work are subject to this License.
 
-"Competing Use" means use of the Licensed Work to provide a hosted, managed, or SaaS service that offers substantially similar functionality to third parties.
+You must include a copy of this License with any distribution.
 
----
+Any violation of this License automatically terminates your rights under this License.
 
-## 8. Permitted Use
+This License does not grant any rights to trademarks or patents.
 
-You may:
-
-- use the software internally
-- modify the software
-- deploy the software in production within your organization
-- use the software for development and testing
-
----
-
-## 9. Restrictions
-
-You may not:
-
-- offer the software as a hosted or SaaS service to third parties
-- use the software to provide a competing managed service
-- circumvent these restrictions
-
----
-
-## 10. No Other Rights
-
-Except for the rights expressly granted in this License, no other rights are granted.
-
----
-
-## 11. Disclaimer of Warranty
-
-The Licensed Work is provided "AS IS", without warranty of any kind.
-
----
-
-## 12. Limitation of Liability
-
-In no event shall the Licensor be liable for any damages arising from the use of the Licensed Work.
-
----
-
-## 13. Governing Model
-
-This License is a Business Source License (BSL) and is intended to restrict certain production uses until the License Change Date.
+THE LICENSED WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
