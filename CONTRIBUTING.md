@@ -27,4 +27,4 @@ This project is currently in early development, so contributions are welcome but
 ## ⚠️ Notes
 
 This project is licensed under the Business Source License (BSL 1.1).
-Commercial usage restrictions apply (see LICENSE file).
+Commercial usage restrictions apply (see [`LICENSE`](./LICENSE) file).
