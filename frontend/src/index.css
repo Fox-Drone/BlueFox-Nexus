@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+/* Base reset SIEM */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+/* Dark SIEM theme */
+:root {
+  --bg: #0f172a;   /* slate-900 */
+  --panel: #111827;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --border: #1f2937;
+}
+
+/* Global styles */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+}
+
+/* Remove centered template layout */
+#root {
+  display: flex;
+  flex-direction: column;
+}
