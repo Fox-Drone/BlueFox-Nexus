@@ -36,7 +36,9 @@ This section provides installation guidance depending on the type of deployment 
 
 To install BlueFox Nexus, simply run the following command:
 
-```curl -fsSL https://raw.githubusercontent.com/Fox-Drone/BlueFox-Nexus/main/install.sh | bash```
+```
+curl -fsSL https://raw.githubusercontent.com/Fox-Drone/BlueFox-Nexus/main/install.sh | bash
+```
 
 Then follow the instructions displayed by the installer script to complete the setup of the application.
 
