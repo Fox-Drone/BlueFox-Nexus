@@ -42,8 +42,7 @@ curl -fsSL https://raw.githubusercontent.com/Fox-Drone/BlueFox-Nexus/main/instal
 
 Then follow the instructions displayed by the installer script to complete the setup of the application.
 
-Planned setup support will include:
-- Docker-based deployment
+Planned setup support will include **Docker**-based deployment in the near future.
 
 ---
 
