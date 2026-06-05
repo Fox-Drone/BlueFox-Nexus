@@ -123,7 +123,8 @@ fi
 if ! command -v node &> /dev/null || \
    ! command -v npm &> /dev/null; then
 
-   apt install nodejs npm -y
+   curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
+   sudo apt-get install -y nodejs
 
     # curl -o- https://fnm.vercel.app/install | bash
     # source "$HOME/.bashrc"
