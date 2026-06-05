@@ -124,7 +124,7 @@ if ! command -v node &> /dev/null || \
    ! command -v npm &> /dev/null; then
 
     curl -o- https://fnm.vercel.app/install | bash
-    # source /home/user/.bashrc
+    source "$HOME/.bashrc"
     fnm install 24
 
 else
