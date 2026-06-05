@@ -123,9 +123,11 @@ fi
 if ! command -v node &> /dev/null || \
    ! command -v npm &> /dev/null; then
 
-    curl -o- https://fnm.vercel.app/install | bash
-    source "$HOME/.bashrc"
-    fnm install 24
+   apt install nodejs npm -y
+
+    # curl -o- https://fnm.vercel.app/install | bash
+    # source "$HOME/.bashrc"
+    # fnm install 24
 
 else
     warn "Node.js is already installed, version may differ from the expected one used by this installer"
