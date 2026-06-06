@@ -111,7 +111,6 @@ apt install -y \
 if ! command -v rustup &> /dev/null || \
    ! command -v rustc &> /dev/null || \
    ! command -v cargo &> /dev/null; then
-    info "Installing Rust..."
 
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs -sSf | sh -s -- -y
     source "$HOME/.cargo/env"
@@ -130,28 +129,18 @@ else
     warn "Node.js is already installed, version may differ from the expected one used by this installer"
 fi
 
-exit 0
-
-############################
-# 🗄️ DATABASE (POSTGRESQL)
-############################
-
 if ! command -v psql &> /dev/null; then
-    info "Installing PostgreSQL..."
 
-    apt install -y postgresql postgresql-contrib
+    apt install -y postgresql
 
-    success "PostgreSQL installed"
 else
-    success "PostgreSQL already installed"
+    warn "PostgreSQL is already installed, version may differ from the expected one used by this installer"
 fi
-
-info "Enabling PostgreSQL service..."
 
 systemctl enable postgresql
 systemctl start postgresql
 
-success "PostgreSQL service running"
+exit 0
 
 ############################
 # 🗄️ DATABASE INIT
