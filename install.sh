@@ -124,11 +124,7 @@ if ! command -v node &> /dev/null || \
    ! command -v npm &> /dev/null; then
 
    curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
-   sudo apt-get install -y nodejs
-
-    # curl -o- https://fnm.vercel.app/install | bash
-    # source "$HOME/.bashrc"
-    # fnm install 24
+   sudo apt install nodejs -y
 
 else
     warn "Node.js is already installed, version may differ from the expected one used by this installer"
