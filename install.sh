@@ -140,8 +140,6 @@ fi
 systemctl enable postgresql
 systemctl start postgresql
 
-exit 0
-
 ############################
 # 📥 PROJECT SETUP
 ############################
