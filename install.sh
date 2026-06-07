@@ -143,38 +143,6 @@ systemctl start postgresql
 exit 0
 
 ############################
-# 🗄️ DATABASE INIT
-############################
-
-DB_NAME="bluefox"
-DB_USER="bluefox"
-DB_PASSWORD="bluefoxpassword"
-
-# check if user exists
-if sudo -u postgres psql -tAc "SELECT 1 FROM pg_roles WHERE rolname='$DB_USER'" | grep -q 1; then
-    warn "PostgreSQL user $DB_USER already exists"
-else
-    info "Creating PostgreSQL user..."
-    sudo -u postgres psql <<EOF
-CREATE USER $DB_USER WITH PASSWORD '$DB_PASSWORD';
-EOF
-    success "User created"
-fi
-
-# check if database exists
-if sudo -u postgres psql -lqt | cut -d \| -f 1 | grep -qw $DB_NAME; then
-    warn "Database $DB_NAME already exists"
-else
-    info "Creating database..."
-    sudo -u postgres psql <<EOF
-CREATE DATABASE $DB_NAME OWNER $DB_USER;
-EOF
-    success "Database created"
-fi
-
-info "PostgreSQL ready"
-
-############################
 # 📥 PROJECT SETUP
 ############################
 
@@ -191,22 +159,15 @@ else
     rm -rf "$TMP_DIR"
     git clone "$REPO_URL" "$TMP_DIR"
 
-    info "Moving project into $INSTALL_DIR..."
-
     mkdir -p "$INSTALL_DIR"
 
-    # 🔥 move all content (including hidden files)
     shopt -s dotglob
     mv "$TMP_DIR"/* "$INSTALL_DIR"/
 
     rm -rf "$TMP_DIR"
 fi
 
-success "Project ready at $INSTALL_DIR"
-
-############################
-# 🦀 BACKEND BUILD
-############################
+exit 0
 
 info "Building backend..."
 
@@ -215,10 +176,6 @@ cargo build --release
 
 success "Backend built"
 
-############################
-# 🌐 FRONTEND BUILD
-############################
-
 info "Installing frontend dependencies..."
 
 cd "$INSTALL_DIR/frontend"
@@ -226,6 +183,31 @@ npm install
 npm run build
 
 success "Frontend ready"
+
+############################
+# 🗄️ DATABASE INIT
+############################
+
+DB_NAME="bluefox"
+DB_USER="psql_bluefox"
+DB_PASSWORD=$(openssl rand -base64 24)
+
+if sudo -u postgres psql -tAc "SELECT 1 FROM pg_roles WHERE rolname='$DB_USER'" | grep -q 1; then
+    warn "PostgreSQL user $DB_USER already exists"
+else
+    info "Creating PostgreSQL user..."
+    sudo -u postgres psql -c "CREATE ROLE $DB_USER LOGIN PASSWORD '$DB_PASSWORD';"
+fi
+
+if sudo -u postgres psql -lqt | cut -d \| -f 1 | grep -qw "$DB_NAME"; then
+    warn "Database $DB_NAME already exists"
+else
+    info "Creating database..."
+    sudo -u postgres psql -c "CREATE DATABASE $DB_NAME OWNER $DB_USER;"
+fi
+
+sudo -u postgres psql -c "ALTER DATABASE $DB_NAME OWNER TO $DB_USER;"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;"
 
 ############################
 # ⚙️ SERVICE INSTALL
@@ -279,23 +261,6 @@ info "Enabling systemd service..."
 sudo systemctl daemon-reload
 sudo systemctl enable $SERVICE_NAME
 sudo systemctl restart $SERVICE_NAME
-
-# echo "📊 Configuring PostgreSQL..."
-
-# sudo systemctl enable postgresql
-# sudo systemctl start postgresql
-
-# DB_NAME="bluefox"
-# DB_USER="bluefox"
-# DB_PASSWORD="bluefoxpassword"
-
-# sudo -u postgres psql <<EOF
-# CREATE USER $DB_USER WITH PASSWORD '$DB_PASSWORD';
-# CREATE DATABASE $DB_NAME OWNER $DB_USER;
-# GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;
-# EOF
-
-# echo "✅ PostgreSQL configured"
 
 # echo "🔥 Configuring firewall..."
 
