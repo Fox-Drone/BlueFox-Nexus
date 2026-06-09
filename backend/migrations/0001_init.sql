@@ -64,11 +64,20 @@ CREATE TABLE IF NOT EXISTS metrics (
 -- FOREIGN KEYS
 -- =========================
 
-ALTER TABLE alerts
-ADD CONSTRAINT fk_event
-FOREIGN KEY (event_id)
-REFERENCES events(id)
-ON DELETE SET NULL;
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1
+        FROM pg_constraint
+        WHERE conname = 'fk_event'
+    ) THEN
+        ALTER TABLE alerts
+        ADD CONSTRAINT fk_event
+        FOREIGN KEY (event_id)
+        REFERENCES events(id)
+        ON DELETE SET NULL;
+    END IF;
+END $$;
 
 -- =========================
 -- INDEXES
