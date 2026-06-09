@@ -28,22 +28,17 @@ impl BruteForceRule {
         if *counter >= 5 {
             return Some(Alert {
                 id: Uuid::new_v4(),
-
-                // event_id est Option<Uuid>
                 event_id: None,
-
+                rule_name: Some("brute_force".to_string()),
                 alert_type: "brute_force".to_string(),
-
                 message: format!(
                     "Brute force detected from {} ({} attempts)",
                     event.source, counter
                 ),
-
                 host: event.source.clone(),
-
                 severity: "high".to_string(),
-
-                timestamp: Utc::now(),
+                status: "new".to_string(),
+                created_at: Utc::now(),
             });
         }
 
