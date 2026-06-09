@@ -190,9 +190,9 @@ fi
 cd "$INSTALL_DIR/backend"
 cargo build --release
 
-# cd "$INSTALL_DIR/frontend"
-# npm install
-# npm run build
+cd "$INSTALL_DIR/frontend"
+npm install
+npm run build
 
 exit 0
 
