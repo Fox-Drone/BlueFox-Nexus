@@ -6,9 +6,11 @@ use uuid::Uuid;
 pub struct Alert {
     pub id: Uuid,
     pub event_id: Option<Uuid>,
+    pub rule_name: Option<String>,
     pub alert_type: String,
     pub severity: String,
     pub message: String,
-    pub timestamp: DateTime<Utc>,
+    pub status: String,
     pub host: String,
+    pub created_at: DateTime<Utc>,
 }
