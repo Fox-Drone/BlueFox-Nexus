@@ -8,20 +8,23 @@ pub async fn insert_alert(pool: &PgPool, alert: &Alert) -> Result<(), sqlx::Erro
         INSERT INTO alerts (
             id,
             event_id,
+            rule_name,
             alert_type,
             severity,
             message,
-            timestamp,
-            host
+            status,
+            host,
+            created_at
         )
-        VALUES ($1,$2,$3,$4,$5,$6,$7)
+        VALUES ($1,$2,$3,$4,$5,$6,$7,$8, NOW())
         "#,
         alert.id,
         alert.event_id,
+        alert.rule_name,
         alert.alert_type,
-        format!("{:?}", alert.severity),
+        alert.severity.to_string(),
         alert.message,
-        alert.timestamp,
+        alert.status,
         alert.host
     )
     .execute(pool)
@@ -49,8 +52,7 @@ pub async fn get_alerts(
         query.push_bind(severity);
     }
 
-    query.push(" ORDER BY timestamp DESC ");
-    query.push(" LIMIT ");
+    query.push(" ORDER BY created_at DESC LIMIT ");
     query.push_bind(limit);
     query.push(" OFFSET ");
     query.push_bind(offset);
