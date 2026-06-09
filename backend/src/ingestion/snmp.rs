@@ -41,8 +41,9 @@ pub async fn start_snmp_listener(
                         host: addr.ip().to_string(),
                         metric_type: "snmp_poll".to_string(),
                         value: 42.0, // simulation (à remplacer par parsing SNMP réel)
-                        timestamp: Utc::now(),
                         source: "snmp".to_string(),
+                        labels: None,
+                        timestamp: Utc::now(),
                     };
 
                     pipeline.process_metric(metric).await;
