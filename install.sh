@@ -147,6 +147,10 @@ systemctl start postgresql
 REPO_URL="https://github.com/Fox-Drone/BlueFox-Nexus.git"
 INSTALL_DIR="/opt/bluefox"
 
+DB_NAME="bluefox"
+DB_USER="psql_bluefox"
+DB_PASSWORD=$(openssl rand -base64 24)
+
 if [[ -d "$INSTALL_DIR" ]]; then
     warn "Project already exists at $INSTALL_DIR"
 
@@ -156,24 +160,22 @@ else
     mkdir -p "$INSTALL_DIR"
 
     git clone "$REPO_URL" "$INSTALL_DIR"
+
+    cp "$INSTALL_DIR/.env.example" "$INSTALL_DIR/.env"
+    DATABASE_URL="postgresql://$DB_USER:$DB_PASSWORD@localhost:5432/$DB_NAME"
+    sed -i "s|DATABASE_URL=.*|DATABASE_URL=$DATABASE_URL|" "$INSTALL_DIR/.env"
 fi
 
 cd "$INSTALL_DIR/backend"
 cargo build --release
 
-exit 0
-
-cd "$INSTALL_DIR/frontend"
-npm install
-npm run build
+# cd "$INSTALL_DIR/frontend"
+# npm install
+# npm run build
 
 ############################
 # 🗄️ DATABASE INIT
 ############################
-
-DB_NAME="bluefox"
-DB_USER="psql_bluefox"
-DB_PASSWORD=$(openssl rand -base64 24)
 
 if sudo -u postgres psql -tAc "SELECT 1 FROM pg_roles WHERE rolname='$DB_USER'" | grep -q 1; then
     warn "PostgreSQL user $DB_USER already exists"
@@ -191,6 +193,8 @@ fi
 
 sudo -u postgres psql -c "ALTER DATABASE $DB_NAME OWNER TO $DB_USER;"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;"
+
+exit 0
 
 ############################
 # ⚙️ SERVICE INSTALL
