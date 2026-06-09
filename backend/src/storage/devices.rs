@@ -5,16 +5,25 @@ pub async fn insert_device(pool: &PgPool, device: &Device) -> Result<(), sqlx::E
     sqlx::query!(
         r#"
         INSERT INTO devices (
-            id, hostname, ip, os, tags, is_active
+            id,
+            hostname,
+            ip,
+            os,
+            tags,
+            is_active,
+            last_seen,
+            metadata
         )
-        VALUES ($1,$2,$3,$4,$5,$6)
+        VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
         "#,
         device.id,
         device.hostname,
         device.ip,
         device.os,
         &device.tags,
-        device.is_active
+        device.is_active,
+        device.last_seen,
+        device.metadata
     )
     .execute(pool)
     .await?;
