@@ -6,18 +6,25 @@ pub async fn insert_event(pool: &PgPool, event: &Event) -> Result<(), sqlx::Erro
     sqlx::query!(
         r#"
         INSERT INTO events (
-            id, source, host, timestamp, event_type, severity, message, tags
+            id, 
+            source, 
+            host, 
+            event_type, 
+            severity, 
+            message, 
+            tags, 
+            timestamp
         )
         VALUES ($1,$2,$3,$4,$5,$6,$7,$8)
         "#,
         event.id,
         event.source,
         event.host,
-        event.timestamp,
         event.event_type,
         format!("{:?}", event.severity),
         event.message,
-        &event.tags
+        &event.tags,
+        event.timestamp
     )
     .execute(pool)
     .await?;
@@ -44,8 +51,7 @@ pub async fn get_events(
         query.push_bind(severity);
     }
 
-    query.push(" ORDER BY timestamp DESC ");
-    query.push(" LIMIT ");
+    query.push(" ORDER BY timestamp DESC LIMIT ");
     query.push_bind(limit);
     query.push(" OFFSET ");
     query.push_bind(offset);
