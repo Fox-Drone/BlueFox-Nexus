@@ -26,11 +26,6 @@ CREATE TABLE IF NOT EXISTS alerts (
     status TEXT NOT NULL DEFAULT 'new',
     host TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-
-    CONSTRAINT fk_event
-        FOREIGN KEY (event_id)
-        REFERENCES events(id)
-        ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS devices (
@@ -64,6 +59,16 @@ CREATE TABLE IF NOT EXISTS metrics (
     labels JSONB,
     timestamp TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+-- =========================
+-- FOREIGN KEYS
+-- =========================
+
+ALTER TABLE alerts
+ADD CONSTRAINT fk_event
+FOREIGN KEY (event_id)
+REFERENCES events(id)
+ON DELETE SET NULL;
 
 -- =========================
 -- INDEXES
