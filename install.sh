@@ -152,6 +152,7 @@ if sudo -u postgres psql -tAc "SELECT 1 FROM pg_roles WHERE rolname='$DB_USER'" 
     warn "PostgreSQL user $DB_USER already exists"
 else
     sudo -u postgres psql -c "CREATE ROLE $DB_USER LOGIN PASSWORD '$DB_PASSWORD';"
+    info "🔑 Database credentials: USER:$DB_USER PASSWORD:$DB_PASSWORD"
 fi
 
 if sudo -u postgres psql -lqt | cut -d \| -f 1 | grep -qw "$DB_NAME"; then
