@@ -191,6 +191,8 @@ cd "$INSTALL_DIR/frontend"
 npm install
 npm run build
 
+ln -sfn /opt/bluefox/frontend/dist /var/www/bluefox
+
 exit 0
 
 ############################
