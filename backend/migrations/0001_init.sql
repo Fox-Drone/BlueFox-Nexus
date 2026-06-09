@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS alerts (
     message TEXT NOT NULL,
     status TEXT NOT NULL DEFAULT 'new',
     host TEXT,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE IF NOT EXISTS devices (
