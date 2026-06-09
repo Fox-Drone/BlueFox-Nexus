@@ -33,10 +33,12 @@ pub fn process_event(event: &Event, ctx: &RuleContext) -> Vec<Alert> {
         alerts.push(Alert {
             id: Uuid::new_v4(),
             event_id: Some(event.id),
+            rule_name: Some("brute_force".to_string()),
             alert_type: "brute_force".to_string(),
             severity: "High".to_string(),
             message: "Multiple failed logins detected".to_string(),
-            timestamp: Utc::now(),
+            status: "new".to_string(),
+            created_at: Utc::now(),
             host: event.host.clone(),
         });
     }
@@ -49,10 +51,12 @@ pub fn process_event(event: &Event, ctx: &RuleContext) -> Vec<Alert> {
         alerts.push(Alert {
             id: Uuid::new_v4(),
             event_id: Some(event.id),
+            rule_name: Some("privilege_escalation".to_string()),
             alert_type: "privilege_escalation".to_string(),
             severity: "Critical".to_string(),
             message: "Suspicious privilege escalation chain".to_string(),
-            timestamp: Utc::now(),
+            status: "new".to_string(),
+            created_at: Utc::now(),
             host: event.host.clone(),
         });
     }
