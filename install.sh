@@ -141,15 +141,33 @@ systemctl enable postgresql
 systemctl start postgresql
 
 ############################
+# 🗄️ DATABASE INIT
+############################
+
+DB_NAME="bluefox"
+DB_USER="psql_bluefox"
+DB_PASSWORD=$(openssl rand -hex 24)
+
+if sudo -u postgres psql -tAc "SELECT 1 FROM pg_roles WHERE rolname='$DB_USER'" | grep -q 1; then
+    warn "PostgreSQL user $DB_USER already exists"
+else
+    sudo -u postgres psql -c "CREATE ROLE $DB_USER LOGIN PASSWORD '$DB_PASSWORD';"
+fi
+
+if sudo -u postgres psql -lqt | cut -d \| -f 1 | grep -qw "$DB_NAME"; then
+    warn "Database $DB_NAME already exists"
+else
+    sudo -u postgres psql -c "CREATE DATABASE $DB_NAME OWNER $DB_USER;"
+    sudo -u postgres psql -c "ALTER DATABASE $DB_NAME OWNER TO $DB_USER;"
+    sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;"
+fi
+
+############################
 # 📥 PROJECT SETUP
 ############################
 
 REPO_URL="https://github.com/Fox-Drone/BlueFox-Nexus.git"
 INSTALL_DIR="/opt/bluefox"
-
-DB_NAME="bluefox"
-DB_USER="psql_bluefox"
-DB_PASSWORD=$(openssl rand -hex 24)
 
 if [[ -d "$INSTALL_DIR" ]]; then
     warn "Project already exists at $INSTALL_DIR"
@@ -164,6 +182,8 @@ else
     cp "$INSTALL_DIR/backend/.env.example" "$INSTALL_DIR/backend/.env"
     DATABASE_URL="postgresql://$DB_USER:$DB_PASSWORD@localhost:5432/$DB_NAME"
     sed -i "s|DATABASE_URL=.*|DATABASE_URL=$DATABASE_URL|" "$INSTALL_DIR/backend/.env"
+
+    sudo -u postgres psql -d bluefox -f "$INSTALL_DIR/backend/migrations/0001_init.sql"
 fi
 
 cd "$INSTALL_DIR/backend"
@@ -172,27 +192,6 @@ cargo build --release
 # cd "$INSTALL_DIR/frontend"
 # npm install
 # npm run build
-
-############################
-# 🗄️ DATABASE INIT
-############################
-
-if sudo -u postgres psql -tAc "SELECT 1 FROM pg_roles WHERE rolname='$DB_USER'" | grep -q 1; then
-    warn "PostgreSQL user $DB_USER already exists"
-else
-    info "Creating PostgreSQL user..."
-    sudo -u postgres psql -c "CREATE ROLE $DB_USER LOGIN PASSWORD '$DB_PASSWORD';"
-fi
-
-if sudo -u postgres psql -lqt | cut -d \| -f 1 | grep -qw "$DB_NAME"; then
-    warn "Database $DB_NAME already exists"
-else
-    info "Creating database..."
-    sudo -u postgres psql -c "CREATE DATABASE $DB_NAME OWNER $DB_USER;"
-fi
-
-sudo -u postgres psql -c "ALTER DATABASE $DB_NAME OWNER TO $DB_USER;"
-sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE $DB_NAME TO $DB_USER;"
 
 exit 0
 
