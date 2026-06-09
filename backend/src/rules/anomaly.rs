@@ -39,11 +39,13 @@ impl AnomalyRule {
             return Some(Alert {
                 id: Uuid::new_v4(),
                 event_id: None,
+                rule_name: Some("anomaly".to_string()),
                 alert_type: "anomaly".to_string(),
                 message: format!("Anomaly detected: {} events from {} in 60s", counter, host),
                 host,
                 severity: "medium".to_string(),
-                timestamp: now,
+                status: "new".to_string(),
+                created_at: now,
             });
         }
 
