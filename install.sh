@@ -94,7 +94,7 @@ fi
 
 info "Updating system packages..."
 
-apt update -y && apt upgrade -y && apt autoremove -y
+apt update -y -qq && apt upgrade -y -qq && apt autoremove -y -qq
 
 ############################
 # 🧰 DEPENDENCIES INSTALLATION
@@ -102,7 +102,7 @@ apt update -y && apt upgrade -y && apt autoremove -y
 
 info "Installing dependencies..."
 
-apt install -y \
+apt install -y -qq \
     git \
     build-essential \
     unzip \
@@ -123,7 +123,7 @@ if ! command -v node &> /dev/null || \
    ! command -v npm &> /dev/null; then
 
    curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
-   sudo apt install nodejs -y
+   sudo apt install -y -qq nodejs
 
 else
     warn "Node.js is already installed, version may differ from the expected one used by this installer"
@@ -131,7 +131,7 @@ fi
 
 if ! command -v psql &> /dev/null; then
 
-    apt install -y postgresql
+    apt install -y -qq postgresql
 
 else
     warn "PostgreSQL is already installed, version may differ from the expected one used by this installer"
@@ -158,22 +158,14 @@ else
     git clone "$REPO_URL" "$INSTALL_DIR"
 fi
 
-exit 0
-
-info "Building backend..."
-
 cd "$INSTALL_DIR/backend"
 cargo build --release
 
-success "Backend built"
-
-info "Installing frontend dependencies..."
+exit 0
 
 cd "$INSTALL_DIR/frontend"
 npm install
 npm run build
-
-success "Frontend ready"
 
 ############################
 # 🗄️ DATABASE INIT
