@@ -55,6 +55,8 @@ pub async fn start_snmp_listener(
                         os: None,
                         tags: vec!["snmp".to_string()],
                         is_active: true,
+                        last_seen: Some(Utc::now()),
+                        metadata: None,
                     };
 
                     pipeline.process_device(device).await;
