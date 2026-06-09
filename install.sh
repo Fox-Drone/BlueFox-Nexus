@@ -146,7 +146,6 @@ systemctl start postgresql
 
 REPO_URL="https://github.com/Fox-Drone/BlueFox-Nexus.git"
 INSTALL_DIR="/opt/bluefox"
-TMP_DIR="/tmp/bluefox-repo"
 
 if [[ -d "$INSTALL_DIR" ]]; then
     warn "Project already exists at $INSTALL_DIR"
@@ -154,15 +153,9 @@ if [[ -d "$INSTALL_DIR" ]]; then
     exit 0
 
 else
-    rm -rf "$TMP_DIR"
-    git clone "$REPO_URL" "$TMP_DIR"
-
     mkdir -p "$INSTALL_DIR"
 
-    shopt -s dotglob
-    mv "$TMP_DIR"/* "$INSTALL_DIR"/
-
-    rm -rf "$TMP_DIR"
+    git clone "$REPO_URL" "$INSTALL_DIR"
 fi
 
 exit 0
