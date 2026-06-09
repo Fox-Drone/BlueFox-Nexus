@@ -106,7 +106,9 @@ apt install -y -qq \
     git \
     build-essential \
     unzip \
-    pkg-config
+    pkg-config \
+    postgresql \
+    nginx
 
 if ! command -v rustup &> /dev/null || \
    ! command -v rustc &> /dev/null || \
@@ -123,22 +125,17 @@ if ! command -v node &> /dev/null || \
    ! command -v npm &> /dev/null; then
 
    curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash -
-   sudo apt install -y -qq nodejs
+   apt install -y -qq nodejs
 
 else
     warn "Node.js is already installed, version may differ from the expected one used by this installer"
 fi
 
-if ! command -v psql &> /dev/null; then
-
-    apt install -y -qq postgresql
-
-else
-    warn "PostgreSQL is already installed, version may differ from the expected one used by this installer"
-fi
-
 systemctl enable postgresql
 systemctl start postgresql
+
+systemctl enable nginx
+systemctl start nginx
 
 ############################
 # 🗄️ DATABASE INIT
@@ -207,14 +204,14 @@ SERVICE_FILE="/etc/systemd/system/$SERVICE_NAME.service"
 
 if ! id "bluefox" &>/dev/null; then
     info "Creating system user bluefox..."
-    sudo useradd -r -s /bin/false bluefox
+    useradd -r -s /bin/false bluefox
 fi
 
-sudo chown -R bluefox:bluefox /opt/bluefox
+chown -R bluefox:bluefox /opt/bluefox
 
 info "Creating systemd service..."
 
-sudo tee $SERVICE_FILE > /dev/null <<EOF
+tee $SERVICE_FILE > /dev/null <<EOF
 [Unit]
 Description=BlueFox Backend
 After=network-online.target postgresql.service
@@ -245,14 +242,14 @@ EOF
 
 info "Enabling systemd service..."
 
-sudo systemctl daemon-reload
-sudo systemctl enable $SERVICE_NAME
-sudo systemctl restart $SERVICE_NAME
+systemctl daemon-reload
+systemctl enable $SERVICE_NAME
+systemctl restart $SERVICE_NAME
 
 # echo "🔥 Configuring firewall..."
 
-# sudo nft add rule inet filter input tcp dport 3000 accept || true
-# sudo nft add rule inet filter input tcp dport 5173 accept || true
+# nft add rule inet filter input tcp dport 3000 accept || true
+# nft add rule inet filter input tcp dport 5173 accept || true
 
 # echo ""
 # echo "✅ Installation completed!"
