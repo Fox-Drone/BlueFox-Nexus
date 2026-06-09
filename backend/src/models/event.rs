@@ -7,9 +7,9 @@ pub struct Event {
     pub id: Uuid,
     pub source: String,
     pub host: String,
-    pub timestamp: DateTime<Utc>,
     pub event_type: String,
     pub severity: String,
     pub message: String,
     pub tags: Vec<String>,
+    pub timestamp: DateTime<Utc>,
 }
