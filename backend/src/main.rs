@@ -1,6 +1,7 @@
 use std::net::SocketAddr;
 use std::sync::Arc;
 use tower_http::cors::CorsLayer;
+use sqlx::migrate::Migrator;
 
 mod api;
 mod app_state;
@@ -16,6 +17,8 @@ use crate::{
     app_state::AppState, config::Config, core::dispatcher::Dispatcher, core::logging::init_logging,
     core::pipeline::Pipeline, rules::context::RuleContext, storage::postgres,
 };
+
+static MIGRATOR: Migrator = sqlx::migrate!("./migrations");
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -33,6 +36,14 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         config.db_timeout_secs,
     )
     .await;
+
+    MIGRATOR
+        .run(&pool)
+        .await
+        .map_err(|e| {
+            tracing::error!("❌ Migration failed: {:?}", e);
+            e
+        })?;
 
     let ctx = RuleContext::new();
 
