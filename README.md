@@ -79,9 +79,8 @@ This project is not a fork of any existing software and has been independently d
 
 ## 📜 License
 
-This project is licensed under the **Business Source License (BSL 1.1)** with additional commercial clarification.
+This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**.
 
-- License Change Date: 2030-01-01  
-- Change License: Apache License 2.0
+This is a strong copyleft license designed for network/server software, ensuring that any modified version of the software made available over a network must also provide its source code.
 
 For full details, see the [`LICENSE`](./LICENSE) file.
