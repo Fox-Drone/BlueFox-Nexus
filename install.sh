@@ -193,7 +193,7 @@ npm run build
 
 ln -sfn /opt/bluefox/frontend/dist /var/www/bluefox
 
-sudo tee /etc/nginx/sites-available/bluefox > /dev/null <<EOF
+tee /etc/nginx/sites-available/bluefox > /dev/null <<EOF
 server {
     listen 80;
     server_name _;
@@ -219,7 +219,11 @@ server {
 }
 EOF
 
-sudo ln -sfn /etc/nginx/sites-available/bluefox /etc/nginx/sites-enabled/bluefox
+rm -f /etc/nginx/sites-enabled/default
+
+ln -sfn /etc/nginx/sites-available/bluefox /etc/nginx/sites-enabled/bluefox
+
+systemctl reload nginx
 
 exit 0
 
