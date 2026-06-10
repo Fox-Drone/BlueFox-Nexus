@@ -242,6 +242,9 @@ fi
 
 chown -R bluefox:bluefox /opt/bluefox
 
+mkdir -p /var/log/bluefox
+chown -R bluefox:bluefox /var/log/bluefox
+
 info "Creating systemd service..."
 
 tee $SERVICE_FILE > /dev/null <<EOF
