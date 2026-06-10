@@ -15,7 +15,7 @@ NC="\033[0m"
 # 🧰 LOG FUNCTIONS
 ############################
 info()    { echo -e "${BLUE}[INFO]${NC} $1"; }
-success() { echo -e "${GREEN}[OK]${NC} $1"; }
+# success() { echo -e "${GREEN}[OK]${NC} $1"; }
 warn()    { echo -e "${YELLOW}[WARN]${NC} $1"; }
 error()   { echo -e "${RED}[ERROR]${NC} $1"; }
 
@@ -225,8 +225,6 @@ ln -sfn /etc/nginx/sites-available/bluefox /etc/nginx/sites-enabled/bluefox
 
 systemctl reload nginx
 
-exit 0
-
 ############################
 # ⚙️ SERVICE INSTALL
 ############################
@@ -237,8 +235,9 @@ BIN_PATH="$APP_DIR/target/release/bluefox-nexus-backend"
 SERVICE_FILE="/etc/systemd/system/$SERVICE_NAME.service"
 
 if ! id "bluefox" &>/dev/null; then
-    info "Creating system user bluefox..."
     useradd -r -s /bin/false bluefox
+else
+    warn "User bluefox already exists"
 fi
 
 chown -R bluefox:bluefox /opt/bluefox
@@ -274,25 +273,13 @@ ProtectHome=true
 WantedBy=multi-user.target
 EOF
 
-info "Enabling systemd service..."
-
 systemctl daemon-reload
 systemctl enable $SERVICE_NAME
 systemctl restart $SERVICE_NAME
 
-# echo "🔥 Configuring firewall..."
+exit 0
+
+# info "🔥 Configuring firewall..."
 
 # nft add rule inet filter input tcp dport 3000 accept || true
 # nft add rule inet filter input tcp dport 5173 accept || true
-
-# echo ""
-# echo "✅ Installation completed!"
-# echo ""
-# echo "📌 Backend:"
-# echo "cd backend && cargo run"
-# echo ""
-# echo "📌 Frontend:"
-# echo "cd frontend && npm run dev"
-# echo ""
-# echo "🌐 Frontend URL:"
-# echo "http://<SERVER-IP>:5173"
