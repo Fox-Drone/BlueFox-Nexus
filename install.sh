@@ -193,6 +193,34 @@ npm run build
 
 ln -sfn /opt/bluefox/frontend/dist /var/www/bluefox
 
+sudo tee /etc/nginx/sites-available/bluefox > /dev/null <<EOF
+server {
+    listen 80;
+    server_name _;
+
+    root /var/www/bluefox;
+    index index.html;
+
+    # Frontend SPA (React/Vue/etc.)
+    location / {
+        try_files \$uri /index.html;
+    }
+
+    # API backend Rust
+    location /api/ {
+        proxy_pass http://127.0.0.1:3000/;
+
+        proxy_http_version 1.1;
+
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+    }
+}
+EOF
+
+sudo ln -sfn /etc/nginx/sites-available/bluefox /etc/nginx/sites-enabled/bluefox
+
 exit 0
 
 ############################
