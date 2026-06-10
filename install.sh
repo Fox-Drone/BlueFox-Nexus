@@ -193,7 +193,65 @@ npm run build
 
 ln -sfn /opt/bluefox/frontend/dist /var/www/bluefox
 
-tee /etc/nginx/sites-available/bluefox > /dev/null <<EOF
+############################
+# 🔐 HTTPS / SELF-SIGNED CERT
+############################
+
+echo ""
+read -p "🔐 Do you want to enable HTTPS (self-signed certificate)? (y/N): " ssl_confirm
+
+if [[ "$ssl_confirm" == "y" || "$ssl_confirm" == "Y" ]]; then
+
+    info "Generating self-signed SSL certificate..."
+
+    SSL_DIR="/etc/nginx/ssl"
+    mkdir -p "$SSL_DIR"
+
+    openssl req -x509 -nodes -days 365 \
+        -newkey rsa:2048 \
+        -keyout "$SSL_DIR/bluefox.key" \
+        -out "$SSL_DIR/bluefox.crt" \
+        -subj "/C=FR/ST=BlueFox/L=Local/O=BlueFox/OU=IT/CN=bluefox.local"
+
+    tee /etc/nginx/sites-available/bluefox > /dev/null <<EOF
+server {
+    listen 80;
+    server_name _;
+
+    return 301 https://\$host\$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name _;
+
+    ssl_certificate     $SSL_DIR/bluefox.crt;
+    ssl_certificate_key $SSL_DIR/bluefox.key;
+
+    root /var/www/bluefox;
+    index index.html;
+
+    location / {
+        try_files \$uri /index.html;
+    }
+
+    location /api/ {
+        proxy_pass http://127.0.0.1:3000/;
+
+        proxy_http_version 1.1;
+
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+    }
+}
+EOF
+
+    warn "⚠️ Self-signed certificate installed (browser warning expected)"
+else
+    warn "Skipping HTTPS setup"
+
+    tee /etc/nginx/sites-available/bluefox > /dev/null <<EOF
 server {
     listen 80;
     server_name _;
@@ -218,6 +276,7 @@ server {
     }
 }
 EOF
+fi
 
 rm -f /etc/nginx/sites-enabled/default
 
