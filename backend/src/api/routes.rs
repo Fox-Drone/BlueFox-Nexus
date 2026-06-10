@@ -10,11 +10,14 @@ use crate::{
 };
 
 pub fn create_routes(state: AppState) -> Router {
-    Router::new()
+    let api = Router::new()
         .route("/ingest/log", post(ingest_log))
         .route("/events", get(get_events))
         .route("/alerts", get(get_alerts))
         .route("/ingest", post(ingest_event))
-        .route("/health", get(health))
+        .route("/health", get(health));
+
+    Router::new()
+        .nest("/api", api)
         .with_state(state)
 }
