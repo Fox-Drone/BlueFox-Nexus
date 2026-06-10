@@ -210,8 +210,7 @@ if [[ "$ssl_confirm" == "y" || "$ssl_confirm" == "Y" ]]; then
     openssl req -x509 -nodes -days 365 \
         -newkey rsa:2048 \
         -keyout "$SSL_DIR/bluefox.key" \
-        -out "$SSL_DIR/bluefox.crt" \
-        -subj "/C=FR/ST=BlueFox/L=Local/O=BlueFox/OU=IT/CN=bluefox.local"
+        -out "$SSL_DIR/bluefox.crt"
 
     tee /etc/nginx/sites-available/bluefox > /dev/null <<EOF
 server {
