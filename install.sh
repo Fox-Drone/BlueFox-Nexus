@@ -185,7 +185,7 @@ else
 fi
 
 cd "$INSTALL_DIR/backend"
-cargo build --release
+cargo build --release -q
 
 cd "$INSTALL_DIR/frontend"
 npm install
