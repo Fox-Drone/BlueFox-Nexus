@@ -1,5 +1,5 @@
 [package]
-name = "bluefox-nexus-backend"
+name = "bluefox-backend"
 version = "0.1.0"
 edition = "2024"
 
