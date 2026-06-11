@@ -64,7 +64,7 @@ The system is built around a **pipeline-based event processing model**.
 
 ### Global Flow
 
-```text
+```
 Internet / LAN
        │
      Nginx
