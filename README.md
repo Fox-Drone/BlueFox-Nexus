@@ -1,6 +1,6 @@
-# 🦊 BlueFox-Nexus
+# 🦊 BlueFox
 
-**BlueFox-Nexus** is a high-performance Security Information and Event Management (SIEM) and observability platform built in **Rust**, designed for **internal enterprise security environments**.
+**BlueFox** is a high-performance Security Information and Event Management (SIEM) and observability platform built in **Rust**, designed for **internal enterprise security environments**.
 
 It provides a unified backend pipeline for collecting, processing, and analyzing security events, metrics, and network data.
 
@@ -8,13 +8,13 @@ It provides a unified backend pipeline for collecting, processing, and analyzing
 
 ## 🎯 Goals
 
-BlueFox-Nexus is designed as a centralized security and observability platform that unifies key monitoring and security functions into a single system.
+BlueFox is designed as a centralized security and observability platform that unifies key monitoring and security functions into a single system.
 
 It provides a unified view of infrastructure and security data, combining log management, system monitoring, and security visibility in one place.
 
 The long-term goal is to enable fast and efficient correlation of security events across all collected data, improving detection and response capabilities. Future versions will also explore AI-assisted analysis to enhance correlation and threat detection, as well as integration with other tools commonly used in security and observability ecosystems.
 
-BlueFox-Nexus can help replace or reduce the need for multiple existing tools such as:
+BlueFox can help replace or reduce the need for multiple existing tools such as:
 
 - SIEM solutions
 - log aggregation / log management platforms
@@ -59,7 +59,7 @@ It provides a simple supervision and observability foundation based on Syslog an
 
 ## 🔐 Security Model
 
-BlueFox-Nexus is designed with the following security and deployment principles in mind:
+BlueFox is designed with the following security and deployment principles in mind:
 
 - Intended for internal environments (SI / SOC deployments)
 - Minimal external exposure by default
@@ -71,7 +71,7 @@ BlueFox-Nexus is designed with the following security and deployment principles 
 
 ## 📚 Inspiration
 
-BlueFox-Nexus is inspired by several well-known open-source and industry projects in the fields of observability, logging, and security monitoring.
+BlueFox is inspired by several well-known open-source and industry projects in the fields of observability, logging, and security monitoring.
 
 The architecture and design decisions were influenced by existing open-source ecosystems and community-driven security tooling, combined with a Rust-first approach to performance and safety.
 
