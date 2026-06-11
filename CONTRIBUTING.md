@@ -1,6 +1,6 @@
-# 🤝 Contributing to BlueFox-Nexus
+# 🤝 Contributing to BlueFox
 
-Thank you for your interest in contributing to BlueFox-Nexus 🚀
+Thank you for your interest in contributing to BlueFox 🚀
 
 This project is in active early development, so changes may evolve quickly and APIs may not be stable.
 
