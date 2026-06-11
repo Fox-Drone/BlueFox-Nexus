@@ -34,7 +34,9 @@ The full system architecture, components, and data flow are described in detail 
 
 This section provides installation guidance depending on the type of deployment chosen.
 
-To install BlueFox Nexus, simply run the following command:
+> **Warning:** BlueFox is strongly recommended to be installed on a fresh server. The installer may modify system configuration and install required dependencies, which could interfere with existing applications, services, or custom configurations already present on the host.
+
+To install BlueFox, simply run the following command:
 
 ```
 sudo curl -fsSL https://raw.githubusercontent.com/Fox-Drone/BlueFox-Nexus/main/install.sh -o install.sh
