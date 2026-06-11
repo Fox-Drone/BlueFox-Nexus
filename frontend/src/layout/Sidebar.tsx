@@ -10,7 +10,7 @@ export default function Sidebar() {
         padding: "20px",
       }}
     >
-      <h2>BlueFox-Nexus</h2>
+      <h2>BlueFox</h2>
 
       <nav
         style={{
