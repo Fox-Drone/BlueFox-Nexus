@@ -64,24 +64,24 @@ The system is built around a **pipeline-based event processing model**.
 
 ### Global Flow
 
-Internet / LAN
-       │
-     Nginx
-       │
- ┌─────┴─────┐
- │ Frontend  │
- │ (Vite)    │
- └─────┬─────┘
-       │
-    /api/*
-       │
- ┌─────▼─────┐
- │ Backend   │
- │ Rust      │
- │ Axum      │
- └─────┬─────┘
-       │
- PostgreSQL
+Internet / LAN  
+       │  
+     Nginx  
+       │  
+ ┌─────┴─────┐  
+ │ Frontend  │  
+ │ (Vite)    │  
+ └─────┬─────┘  
+       │  
+    /api/*  
+       │  
+ ┌─────▼─────┐  
+ │ Backend   │  
+ │ Rust      │  
+ │ Axum      │  
+ └─────┬─────┘  
+       │  
+ PostgreSQL  
 
 ### Core Flow
 
