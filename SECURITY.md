@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-BlueFox-Nexus is under active development.  
+BlueFox is under active development.  
 Security updates are only provided for the latest `main` branch.
 
 | Version        | Supported          |
