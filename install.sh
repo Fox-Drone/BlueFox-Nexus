@@ -289,7 +289,7 @@ systemctl reload nginx
 
 SERVICE_NAME="bluefox-backend"
 APP_DIR="/opt/bluefox/backend"
-BIN_PATH="$APP_DIR/target/release/bluefox-nexus-backend"
+BIN_PATH="$APP_DIR/target/release/bluefox-backend"
 SERVICE_FILE="/etc/systemd/system/$SERVICE_NAME.service"
 
 if ! id "bluefox" &>/dev/null; then
