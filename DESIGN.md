@@ -1,36 +1,36 @@
-# BlueFox-Nexus Design Document
+# BlueFox Design Document
 
 ## 1. Overview
 
-BlueFox-Nexus is a high-performance Security Information and Event Management (SIEM) and observability platform written in Rust.
+BlueFox is a high-performance Security Information and Event Management (SIEM) and observability platform written in Rust.
 
 It is designed for internal enterprise security infrastructures (SI / SOC environments), providing centralized visibility across logs, metrics, and network activity.
 
-It acts as a backend security and observability engine that can be integrated into existing enterprise systems.
+The platform serves as a modular foundation for data collection, monitoring, detection, and analysis, while remaining extensible for future security and observability capabilities.
 
 ---
 
 ## 2. System Purpose
 
-The system provides a unified pipeline for:
+The system provides a unified platform for:
 
-- Collecting security and infrastructure data
-- Normalizing heterogeneous events
-- Processing and enriching telemetry
-- Storing and indexing security information
-- Exposing data through a centralized API
-- Enabling future rule-based correlation and detection
+- Collecting logs, metrics, and infrastructure telemetry
+- Normalizing incoming events into a consistent format
+- Processing and storing operational and security data
+- Managing devices, events, metrics, and alerts
+- Exposing collected information through a centralized API
+- Providing a foundation for future correlation, detection, and analysis capabilities
 
 ---
 
 ## 3. Deployment Model
 
-BlueFox-Nexus is designed for:
+BlueFox is designed for:
 
-- Internal enterprise systems (SI / SOC environments)
-- Private cloud infrastructure
-- On-premise deployments
-- Hybrid architectures
+- Internal security and monitoring systems (SI / SOC environments)
+- On-premise infrastructure
+- Private or self-hosted environments
+- Hybrid setups combining local and remote components
 
 ---
 
@@ -40,22 +40,21 @@ BlueFox-Nexus is designed for:
 
 - **Language**: Rust
 - **Framework**: Axum (REST API)
-- **Async Runtime**: Tokio
+- **Runtime**: Tokio (asynchronous execution)
 - **Database**: PostgreSQL (sqlx)
 - **Serialization**: Serde
-- **Logging**: Tracing
+- **Observability**: Tracing
 
 ### Frontend
 
 - **Language**: TypeScript
 - **Framework**: React
 - **Build Tool**: Vite
-- **UI Approach**: SOC-style component dashboard
+- **UI**: Security-focused dashboard interface
 
 ### Communication Layer
-
-- REST API (JSON over HTTP)
-- Future: WebSockets for real-time event streaming
+- REST API over HTTP (JSON)
+- Planned: real-time event streaming for live updates
 
 ---
 
@@ -64,6 +63,27 @@ BlueFox-Nexus is designed for:
 The system is built around a **pipeline-based event processing model**.
 
 ### Global Flow
+
+Internet / LAN
+       │
+     Nginx
+       │
+ ┌─────┴─────┐
+ │ Frontend  │
+ │ (Vite)    │
+ └─────┬─────┘
+       │
+    /api/*
+       │
+ ┌─────▼─────┐
+ │ Backend   │
+ │ Rust      │
+ │ Axum      │
+ └─────┬─────┘
+       │
+ PostgreSQL
+
+### Core Flow
 
 Syslog / SNMP / Agents  
 ↓  
@@ -214,11 +234,9 @@ Current implementation includes:
 
 ## 10. Design Principles
 
-- High-performance Rust-based backend
-- Low-latency event ingestion
-- Modular and scalable pipeline architecture
-- Backend-first SIEM design
-- Enterprise integration focus
-- Extensible detection system
-- Decoupled frontend (React + TypeScript)
-- Suitable for isolated and secure environments
+- Modular and extensible architecture
+- Backend-focused system design
+- Separation between frontend and backend components
+- Security and observability as core concerns
+- Designed for internal and controlled environments
+- Flexible foundation for future detection and analysis features
