@@ -167,6 +167,9 @@ fi
 REPO_URL="https://github.com/Fox-Drone/BlueFox-Nexus.git"
 INSTALL_DIR="/opt/bluefox"
 
+mkdir -p /var/log/bluefox
+chown -R bluefox:bluefox /var/log/bluefox
+
 if [[ -d "$INSTALL_DIR" ]]; then
     warn "Project already exists at $INSTALL_DIR"
 
@@ -188,8 +191,8 @@ cd "$INSTALL_DIR/backend"
 cargo build --release -q
 
 cd "$INSTALL_DIR/frontend"
-if ! npm install 2> >(tee npm_install.log); then
-  if grep -q "SELF_SIGNED_CERT_IN_CHAIN" npm_install.log; then
+if ! npm install 2> >(tee /var/log/bluefox/npm_install.log); then
+  if grep -q "SELF_SIGNED_CERT_IN_CHAIN" /var/log/bluefox/npm_install.log; then
     error "🔐 SSL error detected (self-signed cert in chain)"
 
     npm config set cafile /etc/ssl/certs/ca-certificates.crt
@@ -310,9 +313,6 @@ else
 fi
 
 chown -R bluefox:bluefox /opt/bluefox
-
-mkdir -p /var/log/bluefox
-chown -R bluefox:bluefox /var/log/bluefox
 
 info "Creating systemd service..."
 
