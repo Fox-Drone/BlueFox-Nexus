@@ -168,7 +168,6 @@ REPO_URL="https://github.com/Fox-Drone/BlueFox-Nexus.git"
 INSTALL_DIR="/opt/bluefox"
 
 mkdir -p /var/log/bluefox
-chown -R bluefox:bluefox /var/log/bluefox
 
 if [[ -d "$INSTALL_DIR" ]]; then
     warn "Project already exists at $INSTALL_DIR"
@@ -313,6 +312,7 @@ else
 fi
 
 chown -R bluefox:bluefox /opt/bluefox
+chown -R bluefox:bluefox /var/log/bluefox
 
 info "Creating systemd service..."
 
