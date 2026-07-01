@@ -188,7 +188,18 @@ cd "$INSTALL_DIR/backend"
 cargo build --release -q
 
 cd "$INSTALL_DIR/frontend"
-npm install
+if ! npm install 2> >(tee npm_install.log); then
+  if grep -q "SELF_SIGNED_CERT_IN_CHAIN" npm_install.log; then
+    error "🔐 SSL error detected (self-signed cert in chain)"
+
+    npm config set cafile /etc/ssl/certs/ca-certificates.crt
+
+    npm install
+  else
+    error "❌ npm install failed"
+    exit 1
+  fi
+fi
 npm run build
 
 ln -sfn /opt/bluefox/frontend/dist /var/www/bluefox
