@@ -1,6 +1,7 @@
 # Rust (backend)
 backend/target
 backend/.sqlx
+backend/package-lock.json
 
 # Node (frontend)
 ## Logs
